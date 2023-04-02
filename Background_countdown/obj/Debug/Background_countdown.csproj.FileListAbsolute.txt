@@ -1,0 +1,13 @@
+E:\VStudio_project\Background_countdown\bin\Debug\Background_countdown.exe.config
+E:\VStudio_project\Background_countdown\bin\Debug\Background_countdown.exe
+E:\VStudio_project\Background_countdown\bin\Debug\Background_countdown.pdb
+E:\VStudio_project\Background_countdown\obj\Debug\Background_countdown.csproj.AssemblyReference.cache
+E:\VStudio_project\Background_countdown\obj\Debug\Background_countdown.csproj.SuggestedBindingRedirects.cache
+E:\VStudio_project\Background_countdown\obj\Debug\Background_countdown.Form1.resources
+E:\VStudio_project\Background_countdown\obj\Debug\Background_countdown.Properties.Resources.resources
+E:\VStudio_project\Background_countdown\obj\Debug\Background_countdown.csproj.GenerateResource.cache
+E:\VStudio_project\Background_countdown\obj\Debug\Background_countdown.csproj.CoreCompileInputs.cache
+E:\VStudio_project\Background_countdown\obj\Debug\Background_countdown.exe
+E:\VStudio_project\Background_countdown\obj\Debug\Background_countdown.pdb
+E:\VStudio_project\Background_countdown\obj\Debug\Interop.IWshRuntimeLibrary.dll
+E:\VStudio_project\Background_countdown\obj\Debug\Background_countdown.csproj.ResolveComReference.cache
