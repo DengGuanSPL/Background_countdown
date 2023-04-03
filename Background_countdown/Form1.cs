@@ -1,10 +1,10 @@
-﻿using Microsoft.Win32;
+using Microsoft.Win32;
 using System;
 using System.Drawing;
 using System.IO;
 using System.Runtime.InteropServices;
-using System.Windows.Forms;
 using System.Text;
+using System.Windows.Forms;
 
 
 namespace Background_countdown
@@ -33,17 +33,29 @@ namespace Background_countdown
         //Configuration config = System.Configuration.ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
         public Form1()
         {
-            //WriteINI("User", "Self-starting", "on", INIPath);
-            string After_Day = ReadINI("User", "After-Day", INIPath);
-            string Meaning = ReadINI("User", "Meaning", INIPath);
-            string Self_starting = ReadINI("User", "Self-starting", INIPath);
-            string Differ = DifferenceTime(DateTime.Now.Date, Convert.ToDateTime(After_Day));
-            TxtImg(Meaning, Differ);
-            if (Self_starting == "on")
+            if (File.Exists(INIPath))
             {
-                //应用壁纸
-                ChangeWallPaper(run_pathway + @"\base\base2.png");
+                try
+                {
+                    //WriteINI("User", "Self-starting", "on", INIPath);
+                    string After_Day = ReadINI("User", "After-Day", INIPath);
+                    string Meaning = ReadINI("User", "Meaning", INIPath);
+                    string Self_starting = ReadINI("User", "Self-starting", INIPath);
+                    string Differ = DifferenceTime(DateTime.Now.Date, Convert.ToDateTime(After_Day));
+                    TxtImg(Meaning, Differ);
+                    if (Self_starting == "on")
+                    {
+                        //应用壁纸
+                        ChangeWallPaper(run_pathway + @"\base\base2.png");
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("读取配置文件错误！请删除当前目录下config.ini并重新设置！");
+                }
+
             }
+
             InitializeComponent();
         }
         //复制文件函数
@@ -89,14 +101,14 @@ namespace Background_countdown
                 File.Copy(srcPath, aimPath);
             }
         }
-        public void WriteINI(string name, string key, string value,string path)
+        public void WriteINI(string name, string key, string value, string path)
         {
             WritePrivateProfileString(name, key, value, path);
         }
-        public string ReadINI(string name, string key,string path)
+        public string ReadINI(string name, string key, string path)
         {
             StringBuilder sb = new StringBuilder(255);
-            int ini = GetPrivateProfileString(name, key, "", sb, 255,path);
+            int ini = GetPrivateProfileString(name, key, "", sb, 255, path);
             return sb.ToString();
         }
         public static string DifferenceTime(DateTime TimeA, DateTime TimeB)
@@ -125,7 +137,7 @@ namespace Background_countdown
             return ss;
 #endif
         }
-        
+
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -321,25 +333,28 @@ namespace Background_countdown
 
         private void 开启开机替换_Click(object sender, EventArgs e)
         {
-            
+
             if (Convert.ToString(DateTime.Now.Date) != Convert.ToString(dateTimePicker2.Text) && 意义.Text != "")
             {
                 WriteINI("User", "Self-starting", "on", INIPath);
                 WriteINI("User", "Meaning", 意义.Text, INIPath);
-                
-                
+                //After_Day = ReadINI("User", "After-Day", INIPath);
+                WriteINI("User", "After-Day", dateTimePicker2.Text, INIPath);
                 MessageBox.Show("请自行创建快捷方式指“启动”文件夹");
                 //被火绒强杀了，加不了（悲
                 //%USERPROFILE%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
                 //System.Diagnostics.Process.Start(Environment.GetEnvironmentVariable("USERPROFILE") + @"\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup");
                 MessageBox.Show("已开启每日更新");
             }
-            MessageBox.Show("未添加有效日期和字符串!");
+            else
+            {
+                MessageBox.Show("未添加有效日期和字符串!");
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            WriteINI("User", "Self-starting", "off",INIPath);
+            WriteINI("User", "Self-starting", "off", INIPath);
             WriteINI("User", "After-Day", "114514", INIPath);
         }
         private void 关闭开机替换_Click(object sender, EventArgs e)
