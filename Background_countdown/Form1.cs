@@ -161,10 +161,31 @@ namespace Background_countdown
         {
 
         }
-
+        int Debug = 0;
         private void label7_Click(object sender, EventArgs e)
         {
-
+            Debug++;
+            if (Debug == 3)
+            {
+                this.Debug_data.Enabled = true;
+                MessageBox.Show("野生的Debug框出现了！还需要点击3次启用Debug！");
+            }
+            if (Debug == 5)
+            {
+                this.button1.Enabled = true;
+            }
+            if (Debug == 7)
+            {
+                MessageBox.Show("你还在点什么？真的没有了");
+            }
+            if (Debug == 9)
+            {
+                this.button2.Visible= true;
+            }
+            if (Debug == 12)
+            {
+                this.button2.Enabled= true;
+            }
         }
 
         private void label7_Click_1(object sender, EventArgs e)
@@ -354,14 +375,19 @@ namespace Background_countdown
 
         private void button1_Click(object sender, EventArgs e)
         {
-            WriteINI("User", "Self-starting", "off", INIPath);
-            WriteINI("User", "After-Day", "114514", INIPath);
+            System.Diagnostics.Process.Start("https://music.163.com/song?id=1844917640"); 
         }
         private void 关闭开机替换_Click(object sender, EventArgs e)
         {
 
             WriteINI("User", "Self-starting", "off", INIPath);
             MessageBox.Show("已关闭每日更新");
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("你被骗啦！");
+            System.Diagnostics.Process.Start("https://music.163.com/song?id=5221167");
         }
     }
 }
